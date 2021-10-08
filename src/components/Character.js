@@ -1,65 +1,40 @@
 // Write your Character component here
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import CharacterInfo from "./CharacterInfo";
 
 const StyledCharacters = styled.div`
     width: 50%;
-    margin: auto;
+    margin: 1% auto;
     background-color: #b9936c;
 
-    table {
-        width: 95%;
-        margin: auto;
-        text-align: left;
-        .keys {
-            background-color: #dac292;
-        }
-        .values {
-            background-color: #e6e2d3;
-        }
+    .name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1% 2%;
     }
 `
 
 const Character = ({ character }) => {
+
+    const [expanded, setExpanded] = useState(false);
+
+    const toggleExpand = () => {
+        if (!expanded) {
+            setExpanded(true);
+        } else {
+            setExpanded(false);
+        }
+      }
+
     return (
         <StyledCharacters>
-            <h2>{character.name}</h2>
-            <table>
-                <colgroup>
-                        <col span='1' className='keys'/>
-                        <col span='1' className='values'/>
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <th>Birth Year</th>
-                        <td>{character.birth_year}</td>
-                    </tr>
-                    <tr>
-                        <th>Gender</th>
-                        <td>{character.gender}</td>
-                    </tr>
-                    <tr>
-                        <th>Height</th>
-                        <td>{character.height}</td>
-                    </tr>
-                    <tr>
-                        <th>Mass</th>
-                        <td>{character.mass}</td>
-                    </tr>
-                    <tr>
-                        <th>Hair Color</th>
-                        <td>{character.hair_color}</td>
-                    </tr>
-                    <tr>
-                        <th>Eye Color</th>
-                        <td>{character.eye_color}</td>
-                    </tr>
-                    <tr>
-                        <th>Skin Color</th>
-                        <td>{character.skin_color}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className="name" onClick={toggleExpand}>
+                <h2>{character.name}</h2>
+                <h2>{!expanded ? '+' : '-'}</h2>
+            </div>
+            {expanded && <CharacterInfo character={character}/>}
         </StyledCharacters>
     )
 }
