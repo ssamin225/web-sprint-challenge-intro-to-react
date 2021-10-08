@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledInfo = styled.div`
+    background-color: #b9936c;
+    padding-bottom: 2%;
     table {
         width: 95%;
         margin: auto;

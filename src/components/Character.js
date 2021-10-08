@@ -7,6 +7,7 @@ const StyledCharacters = styled.div`
     width: 50%;
     margin: 1% auto;
     background-color: #b9936c;
+    border-radius: 25px;
 
     .name {
         display: flex;
@@ -29,7 +30,7 @@ const Character = ({ character }) => {
       }
 
     return (
-        <StyledCharacters>
+        <StyledCharacters >
             <div className="name" onClick={toggleExpand}>
                 <h2>{character.name}</h2>
                 <h2>{!expanded ? '+' : '-'}</h2>
